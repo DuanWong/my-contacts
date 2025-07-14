@@ -3,26 +3,10 @@
 // Create a class
 
 class Contact {
-    #name;
-    #city;
-    #email;
-
-    constructor(name, city, email) {
-        this.#name = name;
-        this.#city = city;
-        this.#email = email;
-    }
-
-    get name() {
-        return this.#name;
-    }
-
-    get city() {
-        return this.#city;
-    }
-
-    get email() {
-        return this.#email;
+    constructor(name, phone, email) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
     }
 }
 
@@ -60,6 +44,19 @@ function isAlphabetOnly(str) {
     }
 }
 
+function validatePhone(phone) {
+    const phoneRegex = /^[0-9\-\+\s\(\)]{1,20}$/;
+
+    if (!phoneRegex.test(phone)) {
+        errorMessage.innerText = 
+        'Please enter a valid phone number!';
+        return false;
+    } else {
+        errorMessage.innerText = '';
+        return true;
+    }
+}
+
 function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -82,11 +79,10 @@ function listContact() {
     const inputInfo = input.split(',').map(item => item.trim());
 
     if (!validateInputInfo(inputInfo)) return;
-    const [contactName, contactCity, contactEmail] = inputInfo;
-    if (!isAlphabetOnly(contactName) || !isAlphabetOnly(contactCity)) return;
-    if (!validateEmail(contactEmail)) return;
+    const [contactName, contactPhone, contactEmail] = inputInfo;
+    if (!isAlphabetOnly(contactName) || !validatePhone(contactPhone) || !validateEmail(contactEmail)) return;
 
-    const contact = new Contact(contactName, contactCity, contactEmail);
+    const contact = new Contact(contactName, contactPhone, contactEmail);
     const contactDiv = document.createElement('div');
     contactDiv.classList.add('contact-box');
     
@@ -97,28 +93,35 @@ function listContact() {
     inputField.value = '';
     calcContacts();
 
-    contactDiv.addEventListener('click', function() {
-        removeContact(contactDiv, contact);
-    });
+    saveContactsToLocalStorage();
 }
 
 function displayContacts(contactDiv, contact) {
     contactDiv.innerHTML = `
     <p>Name: ${contact.name}</p>
-    <p>City: ${contact.city}</p>
-    <p>Email: ${contact.email}</p>
+    <p>Phone: ${contact.phone}</p>
+    <div class="bottom-box">
+        <p>Email: ${contact.email}</p>
+        <i class="fa-solid fa-trash"></i>
+    </div>
 `;
+
+    const deleteButton = contactDiv.querySelector('.fa-trash');
+    deleteButton.addEventListener('click', function () {
+        removeContact(contactDiv, contact);
+    });
 }
 
 function removeContact(contactDiv, contact) {
     contactsContainer.removeChild(contactDiv); 
 
-        const index = contactsArray.indexOf(contact);
-        if (index > -1) {
-            contactsArray.splice(index, 1);
-        }
+    const index = contactsArray.indexOf(contact);
+    if (index > -1) {
+        contactsArray.splice(index, 1);
+    }
 
-        calcContacts();
+    calcContacts();
+    saveContactsToLocalStorage();
 }
 
 addButton.addEventListener('click', listContact);
@@ -129,4 +132,32 @@ function calcContacts() {
     contactsCount.innerText = contactsArray.length;
 }
 
-window.addEventListener('load', calcContacts());
+window.addEventListener('load', function () {
+    loadContactsFromLocalStorage();
+    calcContacts();
+});
+
+// Local Storage
+
+// 保存联系人到本地
+function saveContactsToLocalStorage() {
+    const serialized = JSON.stringify(contactsArray);
+    localStorage.setItem('contacts', serialized);
+}
+
+// 从本地加载联系人
+function loadContactsFromLocalStorage() {
+    const stored = localStorage.getItem('contacts');
+    if (!stored) return;
+
+    const parsedContacts = JSON.parse(stored);
+    parsedContacts.forEach(c => {
+        const contact = new Contact(c.name, c.phone, c.email);
+        contactsArray.push(contact);
+
+        const contactDiv = document.createElement('div');
+        contactDiv.classList.add('contact-box');
+        displayContacts(contactDiv, contact);
+        contactsContainer.appendChild(contactDiv);
+    });
+}

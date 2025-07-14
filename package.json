@@ -1,0 +1,15 @@
+{
+  "name": "project-contacts",
+  "version": "1.0.0",
+  "description": "<p>\r      This is a simple contact directory template. You can add contacts by \r      entering the contact information in the input box. In addition, \r      by clicking on a contact, you can delete it. In the lower right corner \r      of the page, the current total number of contacts is displayed in \r      real time.\r   </p>\r   <p>\r     This website developed by Duan.\r   </p>",
+  "main": "index.js",
+  "scripts": {
+    "start": "lite-server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
