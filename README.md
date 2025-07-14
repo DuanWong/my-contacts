@@ -1,14 +1,5 @@
 # My contacts
-  <p>
-     This is a simple contact directory template. You can add contacts by 
-     entering the contact information in the input box. In addition, 
-     by clicking on a contact, you can delete it. In the lower right corner 
-     of the page, the current total number of contacts is displayed in 
-     real time.
-  </p>
-  <p>
-    This website developed by Duan.
-  </p>
+  **iContacts** is a modern, lightweight web application designed to help users manage their personal and professional contacts with ease. Built with clean HTML, CSS, and JavaScript, it allows you to add, and delete contact information through an intuitive interface. All data is stored locally in the browser, ensuring quick access without the need for a server or login.
 
 ## The technologies used to build the web app
 - <h3>Front-end</h3>
