@@ -2,7 +2,7 @@
 
 body {
     background: #171921 
-    url(https://cdn.dribbble.com/userupload/36271059/file/original-cbbe37d7a258e4acb0d9c6ac94e7f4c8.jpg?resize=1600x1067&vertical=center)
+    url(../img/background.webp)
     center center / cover no-repeat; 
     margin: 0;
     padding: 0;
@@ -17,38 +17,35 @@ body {
     margin-inline: auto;
 }
 
-.grid {
-    display: grid;
-    place-items: center;
-}
-
 /*--------------------------------------------*/
 /*Main                                        */
 /*--------------------------------------------*/
 
 h1 {
-    margin-top: 50px;
-    font-size: 30px;
-    color:#fff;
+    padding-top: 40px;
+    font-size: 35px;
+    color:#161616;;
     font-weight: 700;
+    text-align: center;
 }
 
 .create-box {
     display: flex;
-    width: 600px;
+    width: 100%;
     gap:20px;
+    justify-content: center;
 }
 
 .input {
-    margin: 20px 0;
+    margin: 30px 0 10px;
     padding-left: 10px;
-    width: 80%;
+    width: 50%;
     height: 40px;
     border-radius: 10px;
-    background-color: #ebe3da;
+    background-color: #fff;
     font-size: 15px;
     color:#4f362f;
-    border: 1px solid #ebe3da;
+    border: 1px solid #fff;
 }
 
 .input:focus {
@@ -57,8 +54,8 @@ h1 {
 }
 
 .add {
-    margin: 20px 0;
-    width: 20%;
+    margin: 30px 0 10px;
+    width: 10%;
     height: 40px;
     border-radius: 10px;
     background-color: #009e5f;
@@ -72,8 +69,7 @@ h1 {
 }
 
 .error-box {
-    margin-top: 10px;
-    width: 550px;
+    width: 100%;
     height: 25px;
     background-color: transparent;
     text-align: center;
@@ -82,7 +78,7 @@ h1 {
 }
 
 .contacts-container {
-    margin: 20px 0 100px;
+    margin: 10px 0 100px;
     width: 100%;
     height: auto;
     display: grid;
@@ -96,18 +92,18 @@ h1 {
     width: 100%;
     height: auto;
     cursor: pointer;
-    background-color: #4e352e;
+    background-color: #fff;
     border-radius: 10px;
-    color: #fff;
+    color: #4f362f;
     display: grid;
     justify-items: left;
     align-items: center;
-    border: 2px solid #4e352e;
+    border: 1px solid #fff;
     font-size: 15px;
 }
 
 .contact-box:hover {
-    border: 1px solid #fff;
+    border: 1px solid #4f362f;
     transition: ease-in-out 0.25s;
 }
 
@@ -127,21 +123,14 @@ footer {
     justify-content: space-between;
     line-height: 72px;
     font-size: 18px;
-    color: #000;
+    color: #161616;
+    font-weight: 500;
 }
 
 @media screen and (max-width: 768px) {
     .contacts-container {
         width:100%;
         grid-template-columns: repeat(2, 1fr);
-    }
-
-    .create-box {
-        width: 80%;
-    }
-
-    .error-box {
-        width: 80%;
     }
 }
 
@@ -152,15 +141,15 @@ footer {
         place-items: center;
     }
 
-    .contact-box {
-        width: 80%;
-    }
-
     .input {
         width:80%;
     }
 
     .add {
         width:20%;
+    }
+
+    .error-box {
+        font-size: 12px;
     }
 }
