@@ -18,27 +18,31 @@
   </head>
   <body>
     <main class="container">
-       <h1>iContacts</h1>
-       <section class="create-box">
-        <div class="basic-info">
-          <input class="input-one" type="text" placeholder="First name">
-          <input class="input-two" type="text" placeholder="Last name">
-        </div>
-        <div class="basic-info">
-          <input class="input-three" type="text" placeholder="Phone">
-          <input class="input-four" type="text" placeholder="Email">
-        </div>
-        <textarea class="input-five" type="text" placeholder="Add any relevant information about this contact..."></textarea>
-        <button class="add">Add</button>
-       </section>
-       <section class="error-box">
-          <p class="error-message"></p>
-       </section>
-       <section class="contacts-container"></section>
+      <h1>iContacts</h1>
+      <button class="create">Add contact</button>
+      <section class="contacts-container"></section>
     </main>
     <footer class="container">
       <p>&copy; 2025 Duan Wang</p>
       <p class="total">Total: <span class="count"></span> Contact(s)</p>
     </footer>
+    <section class="create-box">
+        <div class="basic-info-one">
+          <input class="input-one" type="text" placeholder="*Name">
+          <input class="input-two" type="text" placeholder="Phone">
+        </div>
+        <div class="basic-info-two">
+          <input class="input-three" type="text" placeholder="Email">
+          <input class="input-four" type="text" placeholder="Address">
+        </div>
+        <textarea class="input-five" type="text" placeholder="Add any relevant information about this contact..."></textarea>
+        <div class="add-btn-group">
+          <button class="add">Add</button>
+          <button class="add-cancel">Cancel</button>
+        </div>
+        <div class="error-box">
+          <p class="error-message"></p>
+        </div>
+      </section>
   </body>
 </html>
