@@ -34,15 +34,18 @@ h1 {
 }
 
 .create-box {
-    display: flex;
-    width: 100%;
-    gap:20px;
-    justify-content: center;
+    display: grid;
+    width: 50%;
 }
 
-.input {
+.basic-info {
+    display:flex;
+    justify-content: space-between;
+}
+
+.input-one, .input-two, .input-three, .input-four {
     margin: 30px 0 10px;
-    padding-left: 10px;
+    padding: 0 10px;
     width: 50%;
     height: 40px;
     border-radius: 10px;
@@ -52,13 +55,26 @@ h1 {
     border: 1px solid #fff;
 }
 
+.input-five {
+    padding: 10px;
+    width: 50%;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #fff;
+    font-size: 15px;
+    color:#4f362f;
+    border: 1px solid #fff;
+    resize: none;
+    min-height: 80px;
+}
+
 .input:focus {
     border: 1px solid #4f362f;
     transition: ease-in-out 0.25s;
 }
 
 .add {
-    margin: 30px 0 10px;
+    margin: 10px 0;
     width: 10%;
     height: 40px;
     border-radius: 10px;

@@ -20,12 +20,16 @@
     <main class="container">
        <h1>iContacts</h1>
        <section class="create-box">
-          <input 
-            class="input" 
-            type="text" 
-            placeholder="Name, phone, email"
-          >
-          <button class="add">Add</button>
+        <div class="basic-info">
+          <input class="input-one" type="text" placeholder="First name">
+          <input class="input-two" type="text" placeholder="Last name">
+        </div>
+        <div class="basic-info">
+          <input class="input-three" type="text" placeholder="Phone">
+          <input class="input-four" type="text" placeholder="Email">
+        </div>
+        <textarea class="input-five" type="text" placeholder="Add any relevant information about this contact..."></textarea>
+        <button class="add">Add</button>
        </section>
        <section class="error-box">
           <p class="error-message"></p>
