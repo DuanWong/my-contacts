@@ -72,24 +72,28 @@ h1 {
     width: auto;
     place-items: center;
     background-color: #f1f2f3;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 .basic-info-one {
     margin: 30px 30px 0;
+    width: 450px;
+    height: auto;
     display:flex;
     gap:20px;
 }
 
 .basic-info-two {
     margin: 10px 30px;
+    width: 450px;
+    height: auto;
     display:flex;
     gap:20px;
 }
 
 .input-one, .input-two, .input-three, .input-four {
     padding: 0 10px;
-    width: 215px;
+    width: 50%;
     height: 40px;
     border-radius: 10px;
     background-color: #fff;
@@ -119,11 +123,13 @@ h1 {
 .add-btn-group {
     display: flex;
     gap:20px;
+    width: 450px;
+    height: auto;
 }
 
 .add {
     margin: 10px 0;
-    width: 215px;
+    width: 50%;
     height: 40px;
     border-radius: 10px;
     background-color: #009e5f;
@@ -138,7 +144,7 @@ h1 {
 
 .add-cancel {
     margin: 10px 0;
-    width: 215px;
+    width: 50%;
     height: 40px;
     border-radius: 10px;
     background-color: #b07966;
@@ -225,6 +231,18 @@ footer {
         grid-template-columns: repeat(1, 1fr);
         width: 100%;
         place-items: center;
+    }
+
+    .create-box {
+        width: 90%;
+    }
+
+    .input-five, .basic-info-one, .basic-info-two, .add-btn-group {
+        width:80%;
+    }
+
+    .input-one, .input-two, .input-three, .input-four, .input-five {
+        font-size: 10px;
     }
 
     .error-box {
