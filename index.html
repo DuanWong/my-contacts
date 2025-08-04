@@ -19,14 +19,15 @@
   <body>
     <main class="container">
       <h1>iContacts</h1>
-      <button class="create">Add contact</button>
+      <div class="btn-area"><button class="create">+ New Contact</button></div>
       <section class="contacts-container"></section>
     </main>
     <footer class="container">
       <p>&copy; 2025 Duan Wang</p>
       <p class="total">Total: <span class="count"></span> Contact(s)</p>
     </footer>
-    <section class="create-box">
+    <div class="modal">
+      <section class="create-box">
         <div class="basic-info-one">
           <input class="input-one" type="text" placeholder="*Name">
           <input class="input-two" type="text" placeholder="Phone">
@@ -35,7 +36,7 @@
           <input class="input-three" type="text" placeholder="Email">
           <input class="input-four" type="text" placeholder="Address">
         </div>
-        <textarea class="input-five" type="text" placeholder="Add any relevant information about this contact..."></textarea>
+        <textarea class="input-five" placeholder="Add any relevant information about this contact..."></textarea>
         <div class="add-btn-group">
           <button class="add">Add</button>
           <button class="add-cancel">Cancel</button>
@@ -44,5 +45,7 @@
           <p class="error-message"></p>
         </div>
       </section>
+    </div>
+    
   </body>
 </html>

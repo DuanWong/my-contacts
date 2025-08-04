@@ -3,40 +3,39 @@
 // Create a class
 
 class Contact {
-    constructor(name, phone, email) {
+    constructor(name, phone, email, address, note) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.address = address;
+        this.note = note;
     }
 }
 
 // DOM Elements
 
 const errorMessage = document.querySelector('.error-message');
-const inputField = document.querySelector('.input');
+const inputName = document.querySelector('.input-one');
+const inputPhone = document.querySelector('.input-two');
+const inputEmail = document.querySelector('.input-three');
+const inputAddress = document.querySelector('.input-four');
+const inputNote = document.querySelector('.input-five');
+
 const addButton = document.querySelector('.add');
 const contactsContainer = document.querySelector('.contacts-container');
 const contactsCount = document.querySelector('.count');
+const modal = document.querySelector('.modal');
+const createBtn = document.querySelector('.create');
+const addCancel = document.querySelector('.add-cancel');
 
 // Functions for validation
 
-function validateInputInfo(inputInfo) {
-    if (inputInfo.length < 3) {
-        errorMessage.innerText = 
-        'Please enter the complete information and separate them with commas!'
-        return false; 
-    } else {
-        errorMessage.innerText = '';
-        return true;
-    }
-}
+function validateName(name) {
+    const nameRegex = /^[a-zA-ZÀ-ÿ\s'-]{1,50}$/;
 
-function isAlphabetOnly(str) {
-    const alphabetRegex = /^[a-zA-ZÀ-ÿ\s'-]{1,50}$/;
-
-    if (!alphabetRegex.test(str)) {
+    if (!nameRegex.test(name)) {
         errorMessage.innerText = 
-        'Please enter a name or a city in correct format!'
+        'Please enter a name in correct format!'
         return false;
     } else {
         errorMessage.innerText = '';
@@ -46,6 +45,11 @@ function isAlphabetOnly(str) {
 
 function validatePhone(phone) {
     const phoneRegex = /^[0-9\-\+\s\(\)]{1,20}$/;
+
+    if (phone.trim() === '') {
+        errorMessage.innerText = '';
+        return true;
+    }
 
     if (!phoneRegex.test(phone)) {
         errorMessage.innerText = 
@@ -59,6 +63,11 @@ function validatePhone(phone) {
 
 function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (email.trim() === '') {
+        errorMessage.innerText = '';
+        return true;
+    }
 
     if (!emailRegex.test(email)) {
         errorMessage.innerText = 
@@ -75,14 +84,15 @@ function validateEmail(email) {
 const contactsArray = [];
 
 function listContact() {
-    const input = inputField.value;
-    const inputInfo = input.split(',').map(item => item.trim());
+    const contactName = inputName.value.trim();
+    const contactPhone = inputPhone.value.trim();
+    const contactEmail = inputEmail.value.trim();
+    const contactAddress = inputAddress.value.trim();
+    const contactNote = inputNote.value.trim();
 
-    if (!validateInputInfo(inputInfo)) return;
-    const [contactName, contactPhone, contactEmail] = inputInfo;
-    if (!isAlphabetOnly(contactName) || !validatePhone(contactPhone) || !validateEmail(contactEmail)) return;
+    if (!validateName(contactName) || !validatePhone(contactPhone) || !validateEmail(contactEmail)) return;
 
-    const contact = new Contact(contactName, contactPhone, contactEmail);
+    const contact = new Contact(contactName, contactPhone, contactEmail, contactAddress, contactNote);
     const contactDiv = document.createElement('div');
     contactDiv.classList.add('contact-box');
     
@@ -90,23 +100,30 @@ function listContact() {
     displayContacts(contactDiv, contact);
     contactsContainer.insertBefore(contactDiv, contactsContainer.firstChild);
 
-    inputField.value = '';
+    inputName.value = '';
+    inputPhone.value = '';
+    inputEmail.value = '';
+    inputAddress.value = '';
+    inputNote.value = '';
     calcContacts();
 
     saveContactsToLocalStorage();
+    closeModal();
 }
 
 function displayContacts(contactDiv, contact) {
     contactDiv.innerHTML = `
-    <p>Name: ${contact.name}</p>
-    <p>Phone: ${contact.phone}</p>
     <div class="bottom-box">
-        <p>Email: ${contact.email}</p>
-        <i class="fa-solid fa-trash"></i>
+        <p><strong>Name: </strong>${contact.name}</p>
+        <i class="fa-solid fa-xmark"></i>
     </div>
+    <p><strong>Phone: </strong>${contact.phone}</p>
+    <p><strong>Email: </strong>${contact.email}</p>
+    <p><strong>Address: </strong>${contact.address}</p>
+    <p><strong>Note: </strong>${contact.note}</p>
 `;
 
-    const deleteButton = contactDiv.querySelector('.fa-trash');
+    const deleteButton = contactDiv.querySelector('.fa-xmark');
     deleteButton.addEventListener('click', function () {
         removeContact(contactDiv, contact);
     });
@@ -124,6 +141,17 @@ function removeContact(contactDiv, contact) {
     saveContactsToLocalStorage();
 }
 
+// Modal
+function openModal() {
+    modal.style.display = "flex";
+}
+
+function closeModal() {
+    modal.style.display = "none";
+}
+
+createBtn.addEventListener('click', openModal);
+addCancel.addEventListener('click', closeModal);
 addButton.addEventListener('click', listContact);
 
 // Calculate contacts
