@@ -180,7 +180,7 @@ function loadContactsFromLocalStorage() {
 
     const parsedContacts = JSON.parse(stored);
     parsedContacts.forEach(c => {
-        const contact = new Contact(c.name, c.phone, c.email);
+        const contact = new Contact(c.name, c.phone, c.email, c.address, c.note);
         contactsArray.push(contact);
 
         const contactDiv = document.createElement('div');
